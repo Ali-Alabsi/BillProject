@@ -34,9 +34,19 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
+#  Date Field
+  date_field: ^6.0.0
+  # Intl is a set of packages that provide internationalization and localization
+  intl:
+  #  State Management
+  flutter_bloc:
+  bloc:
 
 dev_dependencies:
   flutter_test:
+    sdk: flutter
+
+  flutter_localizations:
     sdk: flutter
 
   # The "flutter_lints" package below contains a set of recommended lints to
@@ -58,10 +68,15 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+    - assets/images/
   #   - images/a_dot_ham.jpeg
-
+  fonts:
+    - family: Tajawal
+      fonts:
+        # - asset: assets/fonts/Tajawal-Bold.ttf
+        # - asset: assets/fonts/Tajawal-Regular.ttf
+        - asset: assets/fonts/Tajawal-Medium.ttf
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
 
