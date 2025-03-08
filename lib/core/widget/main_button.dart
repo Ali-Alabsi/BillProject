@@ -5,10 +5,11 @@ import '../shared/colors.dart';
 import '../shared/text_styles.dart';
 
 class MainButton extends StatelessWidget {
-  final String text;
+  final String? text;
   final Function()? onPressed;
+  final Widget? widget;
   const MainButton({
-    super.key, required this.text, this.onPressed,
+    super.key,  this.text, this.onPressed,  this.widget,
   });
 
   @override
@@ -22,8 +23,8 @@ class MainButton extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10)
             )
         ),
-        child: Text(
-          text,
+        child: widget?? Text(
+          text??'',
           style: TextStyles.font18whiteW600,
         ));
   }

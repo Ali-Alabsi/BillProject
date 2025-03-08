@@ -123,8 +123,9 @@ class FormFieldToInsertDate extends StatelessWidget {
       decoration: InputDecoration(
         prefixIcon: Icon(
           Icons.date_range,
-          color: ProjectColors.blueColor,
+          color: ProjectColors.blackColor,
         ),
+        suffixIcon: SizedBox(),
         contentPadding:
             const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         hintText: hintText,

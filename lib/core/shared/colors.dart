@@ -4,7 +4,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class ProjectColors {
-  static Color mainColor = Color(0xffA1BED3);
+  static Color mainColor = Color(0xff679cbd);
+  static Color mainColor2 = Color(0xff9BB7F1);
   static Color subColor = Color(0xff91A291);
   static Color accentColor = Color(0xff007bff);
   static Color whiteColor = Colors.white;

@@ -1,12 +1,17 @@
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../controller/login_controller/login_cubit.dart';
 import '../../controller/signup_controller/signup_cubit.dart';
+import '../../core/apis/dio_consumer.dart';
+import '../../core/app_routes.dart';
 import '../../core/shared/colors.dart';
 import '../../core/shared/text_styles.dart';
 import '../../core/widget/app_text_form_filed.dart';
+import '../../core/widget/constants.dart';
+import '../../core/widget/loading_in_dicator.dart';
 import '../../core/widget/main_button.dart';
 import '../screen/login.dart';
 
@@ -18,7 +23,11 @@ class FormSignup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SignupCubit, SignupState>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state is SignupError) {
+          Constants.showSnackBar(context: context, message: state.message);
+        }
+      },
       builder: (context, state) {
         return Form(
           key: SignupCubit.get(context).signupFormKey,
@@ -78,12 +87,18 @@ class FormSignup extends StatelessWidget {
                   keyboardType: TextInputType.phone),
               const SizedBox(height: 30),
               MainButton(
-                text: 'تسجيل الدخول',
+                widget:state is SignupLoading ? LoadingIndicator():  Text(
+                  'إنشاء حساب',
+                  style: TextStyles.font18whiteW600,
+                ),
                 onPressed: () {
+
                   if (SignupCubit.get(context)
                       .signupFormKey
                       .currentState!
-                      .validate()) {}
+                      .validate()) {
+                    SignupCubit.get(context).signup();
+                  }
                 },
               ),
               const SizedBox(height: 20),
@@ -95,18 +110,10 @@ class FormSignup extends StatelessWidget {
                   TextButton(
                     onPressed: () {
                       SignupCubit.get(context).close();
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => BlocProvider(
-                            create: (context) => LoginCubit(), // إنشاء Cubit خاص بصفحة Login
-                            child: Login(),
-                          ),
-                        ),
-                      );
+                      Navigator.pushNamed(context, AppRoutes.login);
 
                     },
-                    child: Text('انشاء حساب جديد',
+                    child: Text('تسجيل الدخول',
                         style: TextStyles.font16mainColorW300),
                   )
                 ],
